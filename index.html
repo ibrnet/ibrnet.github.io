@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="IBRNet: Learning Multi-View Image-Based Rendering.">
+  <meta name="keywords" content="IBRNet, ray transformer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IBRNet: Learning Multi-View Image-Based Rendering</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">IBRNet: Learning Multi-View Image-Based Rendering</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.cs.cornell.edu/~qqw/">Qianqian Wang</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/zhicheng-wang-96116897/">Zhicheng Wang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.kylegenova.com/">Kyle Genova</a><sup>1,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://pratulsrinivasan.github.io/">Pratul Srinivasan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/howard-zhou-0a34b84/">Howard Zhou</a><sup>1</sup>,
+            </span>
+             <br>
+            <span class="author-block">                
+              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com/">Ricardo Martin-Brualla</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.cornell.edu/~snavely/">Noah Snavely</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.princeton.edu/~funk/">Thomas Funkhouser</a><sup>1,3</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Google Research &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>2</sup>Cornell Tech, Cornell University &nbsp;&nbsp;</span>
+            <span class="author-block"><sup>3</sup>Princeton University &nbsp;&nbsp;</span>
+
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- supp PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supp</span>
+                </a>
+              </span>
+              <!-- Video Link. 
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> 
+              -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code(coming soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-flower">
+          <video poster="" id="flower" autoplay controls muted loop height="100%">
+            <source src="static/videos/flower.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-ancient">
+          <video poster="" id="ancient" autoplay controls muted loop height="100%">
+            <source src="static/videos/ancient.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-grocery_flower">
+          <video poster="" id="grocery_flower" autoplay controls muted loop height="100%">
+            <source src="static/videos/grocery_flower.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-leaves">
+          <video poster="" id="leaves" autoplay controls muted loop height="100%">
+            <source src="static/videos/leaves.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-cabinet">
+          <video poster="" id="cabinet" autoplay controls muted loop height="100%">
+            <source src="static/videos/cabinet.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+        <div class="item item-horns">
+          <video poster="" id="horns" autoplay controls muted loop height="100%">
+            <source src="static/videos/horns.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-room">
+          <video poster="" id="room" autoplay controls muted loop height="100%">
+            <source src="static/videos/room.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-trex">
+          <video poster="" id="trex" autoplay controls muted loop height="100%">
+            <source src="static/videos/trex.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+   	<div align="center">
+		*Results above are generated using our single pretrained model without per-scene optimzation
+	</div>
+</section>
+
+    
+<!--
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <video id="teaser" autoplay muted loop height="100%">
+          <source src="https://storage.googleapis.com/nerfies-public/videos/teaser.mp4"
+                  type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">D-NeRF</span> turns selfie videos from your phone into free-viewpoint
+          portraits (<i>nerfies</i>).
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+
+<section class="section">
+  <div class="container">
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+           We present a method that synthesizes novel views of complex scenes by interpolating a sparse set of nearby views. The core of our method is a network architecture that includes a multilayer perceptron and a ray transformer that estimates radiance and volume density at continuous 5D locations (3D spatial locations and 2D viewing directions), drawing appearance information on the fly from multiple source views. By drawing on source views at render time, our method hearkens back to classic work on image-based rendering (IBR), and allows us to render high-resolution imagery. 
+<em>
+              Unlike neural scene representation work that optimizes per-scene functions for rendering, we learn a generic view interpolation function that generalizes to novel scenes. </em>
+We render images using classic volume rendering, which is fully differentiable and allows us to train using only multi-view posed images as supervision. Experiments show that our method outperforms 
+recent novel view synthesis methods that also seek to generalize to novel scenes. Further, if fine-tuned on each scene, our method is competitive with state-of-the-art single-scene neural rendering methods.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Abstract. -->
+
+<div align="center" style="margin-top:80px;" style="margin-bottom:120px;">
+<img style='height: auto; width: 75%; object-fit: contain' src="static/images/overview.png" alt="overview_image">
+</div> 
+
+    
+
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 align="center"  class="title is-2">Video Comparsion</h2>
+
+        <!-- Ours vs. LLFF -->
+        <h3 align="center" class="title is-4">Ours vs. LLFF </h3>
+        <div class="content has-text-justified">
+        </div>
+        <div class="content has-text-centered">
+          <video poster='static/images/llff_ours_preview.png'
+                 id="replay-video"
+                 controls
+                 muted
+                 preload
+                 width="75%">
+            <source src="static/videos/llff_ours.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!-- Ours vs. LLFF -->
+
+        <!-- Ours Finetuned vs. NeRF -->
+        <h3 align="center" style="margin-top:80px;"  class="title is-4">Ours Finetuned vs. NeRF </h3>
+        <div class="content has-text-justified">
+        </div>
+        <div class="content has-text-centered">
+          <video poster='static/images/nerf_ours_ft_preview.png'
+                 id="replay-video"
+                 controls
+                 muted
+                 preload
+                 width="75%">
+            <source src="static/videos/nerf_ours_ft.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!-- Ours Finetuned vs. NeRF -->
+          
+        
+      </div>
+    </div>
+    <!--/ Animation. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2020nerfies
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Deformable Neural Radiance Fields},
+  journal   = {arXiv preprint arXiv:2011.12948},
+  year      = {2020},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://storage.googleapis.com/nerfies-public/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website, we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
